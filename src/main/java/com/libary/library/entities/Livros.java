@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -20,14 +22,23 @@ public class Livros {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Campo titulo está vazio")
     @Column(nullable = false)
     private String titulo;
+
+    @NotBlank(message = "Campo autor está vazio")
     @Column(nullable = false)
     private String autor;
+
+    @NotBlank(message = "Campo genero está vazio")
     @Column(nullable = false)
     private String genero;
+
+    @NotBlank(message = "Campo ISBN está vazio")
     @Column(nullable = false)
     private String isbn;
+
+    @NotNull(message = "O ano da publicação esta vazio")
     @Column(nullable = false)
     private Integer anoPublicacao;
 

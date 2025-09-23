@@ -3,6 +3,7 @@ package com.libary.library.service;
 import com.libary.library.DTO.LivrosDTO;
 import com.libary.library.entities.Livros;
 import com.libary.library.repositories.LivrosRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,4 +28,10 @@ public class LivrosService {
         return livrosRepository.findAll().stream().map(LivrosDTO::new).toList();
     }
 
+    public LivrosDTO findById(Long id) {
+        Livros livros = livrosRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
+
+        return new LivrosDTO(livros);
+    }
 }

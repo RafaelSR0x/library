@@ -34,4 +34,24 @@ public class LivrosService {
 
         return new LivrosDTO(livros);
     }
+
+    public Livros update(Long id, Livros request){
+        Livros livros = livrosRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
+
+        livros.setTitulo(request.getTitulo());
+        livros.setAutor(request.getAutor());
+        livros.setGenero(request.getGenero());
+        livros.setIsbn(request.getIsbn());
+        livros.setAnoPublicacao(request.getAnoPublicacao());
+
+        return livrosRepository.save(livros);
+    }
+
+    public void delete(Long id){
+        Livros livros = livrosRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
+
+        livrosRepository.delete(livros);
+    }
 }

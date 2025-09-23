@@ -11,6 +11,11 @@ public class LivrosDTO {
     private Integer anoPublicacao;
     private Livros.StatusLivro status;
 
+
+    public LivrosDTO() {
+
+    }
+
     public LivrosDTO(Livros livros) {
         titulo = livros.getTitulo();
         autor = livros.getAutor();

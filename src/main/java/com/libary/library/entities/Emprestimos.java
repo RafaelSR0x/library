@@ -2,6 +2,8 @@ package com.libary.library.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,7 +19,7 @@ public class Emprestimos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "livros_id")
     private Livros livro;
 
@@ -31,10 +33,11 @@ public class Emprestimos {
     private LocalDateTime dataDevolucao;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private StatusEmprestimo statusEmprestimo;
 
     public enum StatusEmprestimo{
-        ATIVO, INATIVO
+        ATIVO, FINALIZADO
     }
 
     public Emprestimos() {

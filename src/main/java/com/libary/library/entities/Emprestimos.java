@@ -1,5 +1,6 @@
 package com.libary.library.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -19,8 +20,10 @@ public class Emprestimos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "livros_id")
+    @JsonBackReference
     private Livros livro;
 
     @Column(nullable = false)

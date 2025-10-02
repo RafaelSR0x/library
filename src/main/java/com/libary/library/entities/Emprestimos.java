@@ -32,7 +32,6 @@ public class Emprestimos {
     @Column(nullable = false)
     private LocalDateTime dataEmprestimo;
 
-    @Column(nullable = false)
     private LocalDateTime dataDevolucao;
 
     @Column(nullable = false)
